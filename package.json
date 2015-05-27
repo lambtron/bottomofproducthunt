@@ -15,11 +15,13 @@
   "private": true,
   "dependencies": {
     "co": "^4.5.2",
+    "co-monk": "^1.0.0",
     "co-views": "^0.2.0",
     "koa": "^0.13.0",
     "koa-bodyparser": "^1.4.1",
     "koa-route": "^2.2.0",
     "koa-static": "^1.4.9",
+    "monk": "^1.0.1",
     "superagent": "^1.1.0",
     "swig": "^1.4.2",
     "thunkify-wrap": "^1.0.4"
