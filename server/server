@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var parser = require('koa-bodyparser');
+var PORT = process.env.PORT || 3000;
+var serve = require('koa-static');
+var route = require('koa-route');
+var koa = require('koa');
+
+/**
+ * Expose `app`.
+ */
+
+exports = app = koa();
+
+/**
+ * Setup static directory.
+ */
+
+app.use(serve('client'));
+
+/**
+ * Use body parser.
+ */
+
+app.use(parser());
+
+/**
+ * Configure routes.
+ */
+
+var routes = require('./lib/routes.js');
+app.use(route.get('/', routes.index));
+
+/**
+ * Listen on PORT.
+ */
+
+app.listen(PORT);
+console.log('listening on port ' + PORT);
