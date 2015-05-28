@@ -21,6 +21,8 @@
     "koa-bodyparser": "^1.4.1",
     "koa-route": "^2.2.0",
     "koa-static": "^1.4.9",
+    "lodash": "^3.9.3",
+    "moment": "^2.10.3",
     "monk": "^1.0.1",
     "superagent": "^1.1.0",
     "swig": "^1.4.2",
