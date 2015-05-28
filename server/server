@@ -17,12 +17,6 @@ var koa = require('koa');
 exports = app = koa();
 
 /**
- * Setup static directory.
- */
-
-app.use(serve('client'));
-
-/**
  * Use body parser.
  */
 
@@ -35,6 +29,12 @@ app.use(parser());
 var routes = require('./lib/routes.js');
 app.use(route.get('/', routes.index));
 app.use(route.post('/auth', routes.auth));
+
+/**
+ * Setup static directory.
+ */
+
+app.use(serve('client'));
 
 /**
  * Listen on PORT.
