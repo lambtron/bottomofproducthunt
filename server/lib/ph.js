@@ -24,7 +24,7 @@ PH.token = function *() {
   if (token && moment().isBefore(token.expiresAt)) return token.access_token;
   var newToken = yield ProductHunt.token();
   newToken.expiresAt = moment().add(newToken.expires_in, 's').toDate();
-  if (token)
+  if (!token)
     yield PH.insert(newToken);
   else
     yield PH.updateById(token._id, newToken);
