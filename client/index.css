@@ -4,6 +4,7 @@
 }
 
 .votes {
+  cursor: pointer;
   background: #edeceb;
   border-radius: 3px;
   height: 44px;
@@ -23,6 +24,13 @@
   font-size: 1.4em;
   font-weight: 800;
   margin-top: -2px;
+}
+
+a.name:link {
+  color: black;
+}
+
+a.name:active {
   color: #bbbbbb;
 }
 
