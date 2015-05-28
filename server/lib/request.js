@@ -22,10 +22,12 @@ exports.post = function post(uri, body) {
  * Thunkified GET.
  */
 
-exports.get = function get(uri) {
+exports.get = function get(uri, token, etag) {
   return function(fn) {
     request
       .get(uri)
+      .set('Authorization', 'Bearer ' + token)
+      .set('ETag', etag)
       .end(fn);
   };
 };
