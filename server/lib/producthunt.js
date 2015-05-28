@@ -6,49 +6,58 @@
 var request = require('./request');
 var Comment = require('./comment');
 var Post = require('./post');
+var _ = require('lodash');
 
 /**
  * Static variables.
  */
 
-var id = process.env.PRODUCT_HUNT_ID || '';
-var secret = process.env.PRODUCT_HUNT_SECRET || '';
+var apiKey = process.env.PRODUCT_HUNT_API_KEY || '';
+var apiSecret = process.env.PRODUCT_HUNT_API_SECRET || '';
 var uri = 'https://api.producthunt.com/v1/';
-
-/**
- *
- */
-
-module.exports = ProductHunt;
+var etag = '';
 
 /**
  * Get access token.
  */
 
-ProductHunt.token = function *() {
+exports.token = function *() {
   var body = {
-    client_id: id,
-    client_secret: secret,
-    grant_type: 'client_credentials';
+    client_id: apiKey,
+    client_secret: apiSecret,
+    grant_type: 'client_credentials'
   };
   var res = yield request.post(uri + 'oauth/token', body);
-  return res.access_token;
+  return res.body;
 };
 
 /**
  * Get new posts.
  */
 
-ProductHunt.posts = function *() {
-  // var res = yield request.get(uri + 'posts');
-  // save to Post.
+exports.posts = function *(token) {
+  var res = yield request.get(uri + 'posts', token, etag);
+  etag = res.header.etag;
+  return bottom(res.body.posts);
 };
 
 /**
  *
  */
 
-ProductHunt.comments = function *() {
+exports.comments = function *() {
   // var res = yield request.get(uri + 'comments');
   // save to Comment.
 };
+
+/**
+ * Private helper function that only returns bottom of PH.
+ */
+
+function bottom(posts) {
+  return {
+    posts: _.filter(posts, function(post) {
+      return post.votes_count < 51;
+    })
+  };
+}
