@@ -2,14 +2,52 @@
 <head>
   <title>Bottom of Product Hunt</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/png" href="/img/favicon.png">
 </head>
 <body>
-  <div class="container" style="width: 500px; text-align: center; margin-top: 100px">
-    <img src="/img/bottomofproducthunt.png" style="width: 300px" />
-    <br><br>
-    <h2>Bottom of Product Hunt</h2>
-    <h4 style="line-height: 2.4em"><i>Coming soon!</i></h4>
+  <header style="padding: 15px 0px">
+    <div class="container" style="width: 960px; padding: 0px">
+      <a class="brand" href="/">
+        <img src="/img/bottomofproducthunt.png" style="width: 40px" />
+        <div style="display: inline-block; margin-left: 8px">
+          <h1 style="font-size: 18px">Bottom of Product Hunt</h1>
+        </div>
+      </a>
+    </div>
+  </header>
+  <hr>
+  <div class="day container" style="width: 960px; margin-bottom: 40px;">
+    <div class="row">
+      TODAY
+    </div>
+    <div class="">
+      {% for post in posts %}
+        <div class="post row">
+          <div class="votes col-md-1" style="padding: 5px 0px 0px 0px">
+            <div class="glyphicon glyphicon-chevron-up">
+            </div>
+            <div class="votes-count">
+              {{ post.votes_count }}
+            </div>
+          </div>
+          <a class="content col-md-9" href="{{ post.redirect_url }}" style="text-decoration: none">
+            <div class="name">
+              {{ post.name }}
+            </div>
+            <div class="tagline">
+              {{ post.tagline }}
+            </div>
+          </a>
+          <a class="comments col-md-2" href="{{ post.discussion_url }}" style="text-decoration: none; padding: 0px">
+            <span class="comments-count pull-right">
+              {{ post.comments_count }}
+            </span>
+            <svg class="pull-right" style="margin: 5px 15px 0px 0px" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg"><path d="M1.87 10.06C.702 8.996 0 7.623 0 6.125 0 2.742 3.582 0 8 0s8 2.742 8 6.125-3.582 6.125-8 6.125c-1.098 0-2.145-.17-3.097-.476-1.56.845-4.607 1.962-4.607 1.962s1.02-2.298 1.573-3.676z" fill="#BAB5B3" opacity=".5" fill-rule="evenodd"></path></svg>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </body>
 </html>
