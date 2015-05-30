@@ -8,7 +8,7 @@
 <body>
   <header style="padding: 15px 0px">
     <div class="container" style="width: 960px; padding: 0px">
-      <a class="brand" href="/">
+      <a class="brand" href="/" style="text-decoration: none">
         <img src="/img/bottomofproducthunt.png" style="width: 40px" />
         <div style="display: inline-block; margin-left: 8px">
           <h1 style="font-size: 18px">Bottom of Product Hunt</h1>
@@ -24,14 +24,14 @@
     <div class="">
       {% for post in posts %}
         <div class="post row">
-          <div class="votes col-md-1" style="padding: 5px 0px 0px 0px">
+          <div class="votes col-xs-1" style="padding: 5px 0px 0px 0px">
             <div class="glyphicon glyphicon-chevron-up">
             </div>
             <div class="votes-count">
               {{ post.votes_count }}
             </div>
           </div>
-          <a class="content col-md-9" href="{{ post.redirect_url }}" style="text-decoration: none">
+          <a class="content col-xs-9" href="{{ post.redirect_url }}" style="text-decoration: none">
             <div class="name">
               {{ post.name }}
             </div>
@@ -39,7 +39,7 @@
               {{ post.tagline }}
             </div>
           </a>
-          <a class="comments col-md-2" href="{{ post.discussion_url }}" style="text-decoration: none; padding: 0px">
+          <a class="comments col-xs-2" href="{{ post.discussion_url }}" style="text-decoration: none; padding: 0px">
             <span class="comments-count pull-right">
               {{ post.comments_count }}
             </span>
